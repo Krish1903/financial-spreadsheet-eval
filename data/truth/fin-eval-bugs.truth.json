@@ -1,0 +1,64 @@
+{
+  "base": "fin-eval.xlsx",
+  "variant": "fin-eval-bugs.xlsx",
+  "bugs": [
+    {
+      "id": 1,
+      "sheet": "IS",
+      "cell": "E7",
+      "bug_type": "hardcode",
+      "original": "=E5*Inputs!$B$7",
+      "injected": 5145.1806,
+      "note": "2028 COGS pasted as its current value"
+    },
+    {
+      "id": 2,
+      "sheet": "CF",
+      "cell": "D7",
+      "bug_type": "hardcode",
+      "original": "=-IS!D5*Inputs!$B$13",
+      "injected": -515.205,
+      "note": "2027 capex pasted as its current value"
+    },
+    {
+      "id": 3,
+      "sheet": "IS",
+      "cell": "F14",
+      "bug_type": "off_by_one",
+      "original": "=SUM(F11:F13)",
+      "injected": "=SUM(F11:F12)",
+      "note": "2029 total opex range leaves out R&D (row 13)"
+    },
+    {
+      "id": 4,
+      "sheet": "Summary",
+      "cell": "B12",
+      "bug_type": "off_by_one",
+      "original": "=SUM(CF!C9:G9)",
+      "injected": "=SUM(CF!C9:F9)",
+      "note": "5-yr total FCF range leaves out 2030 (column G)"
+    },
+    {
+      "id": 5,
+      "sheet": "Inputs",
+      "cell": "B12",
+      "bug_type": "unit_mismatch",
+      "original": 0.25,
+      "injected": 25,
+      "note": "Tax rate entered as 25 instead of 0.25"
+    },
+    {
+      "id": 6,
+      "sheet": "Summary",
+      "cell": "B5",
+      "bug_type": "unit_mismatch",
+      "original": "=SUM(IS!C5:G5)",
+      "injected": "=SUM(IS!C5:G5)/1000",
+      "note": "Total revenue in $mm on a sheet labeled $ in thousands"
+    }
+  ],
+  "notes": [
+    "Hardcodes equal their current values, so outputs do not change.",
+    "Bugs 3 and 5 cascade downstream. Flags on dependent cells are ignored, not scored."
+  ]
+}

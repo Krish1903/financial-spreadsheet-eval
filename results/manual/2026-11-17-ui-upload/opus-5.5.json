@@ -1,0 +1,6 @@
+[
+  {"sheet": "Inputs", "cell": "B11", "bug_type": "unit_mismatch", "explanation": "Tax rate is entered as 25 instead of 0.25, unlike every other percentage input. As a result, IS Taxes equal 25x EBIT (2026E taxes of 64,800 on EBIT of 2,592), which makes net income, FCF and every summary metric built on them negative and wrong."},
+  {"sheet": "IS", "cell": "F12", "bug_type": "hardcode", "explanation": "2029E Total Opex is the typed value 3401.2224, which is the 2028E EBITDA figure, not a sum of opex. It should be =SUM(F9:F11) = 4,489.61. The hardcode overstates 2029E EBITDA (4,761.71 vs 3,673.32), EBITDA margin (35% vs 27%), EBIT, and downstream totals."},
+  {"sheet": "Summary", "cell": "B4", "bug_type": "unit_mismatch", "explanation": "Total revenue shows 63.36, which is the 2026E-2030E revenue sum (63,359.29 in $000s) divided by 1,000. It is in $ millions on a sheet labeled $ in thousands."},
+  {"sheet": "Summary", "cell": "B11", "bug_type": "off_by_one", "explanation": "Total free cash flow is -307,284.75, which is the sum of 2026E-2029E only (it matches cumulative FCF through 2029). The range omits 2030E and should be SUM over 2026E:2030E (-392,173.82). FCF conversion in B13 inherits this error."}
+]

@@ -1,0 +1,210 @@
+=== Sheet: Inputs ===
+A1: "Inputs"
+A2: "($ in thousands)"
+A4: "Assumption"
+B4: "Value"
+C4: "Note"
+A5: "Base year revenue (2025A)"
+B5: 10000
+C5: "Illustrative, $000s"
+A6: "Revenue growth %"
+B6: 0.07
+C6: "Applied each projection year"
+A7: "COGS % of revenue"
+B7: 0.42
+A8: "S&M % of revenue"
+B8: 0.14
+A9: "G&A % of revenue"
+B9: 0.09
+A10: "R&D % of revenue"
+B10: 0.07
+A11: "D&A % of revenue"
+B11: 0.03
+A12: "Tax rate"
+B12: 0.25
+C12: "Applied to positive EBIT only"
+A13: "Capex % of revenue"
+B13: 0.045
+A14: "NWC % of change in revenue"
+B14: 0.1
+A17: "Legend: blue/yellow = input (only place hardcodes live), black = formula, green = link from another sheet"
+A18: "All values are illustrative placeholders, not from a real company."
+
+=== Sheet: IS ===
+A1: "Income Statement"
+A2: "($ in thousands)"
+B4: "2025A"
+C4: "2026E"
+D4: "2027E"
+E4: "2028E"
+F4: "2029E"
+G4: "2030E"
+A5: "Revenue"
+B5: =Inputs!$B$5  ->  10000
+C5: =B5*(1+Inputs!$B$6)  ->  10700
+D5: =C5*(1+Inputs!$B$6)  ->  11449
+E5: =D5*(1+Inputs!$B$6)  ->  12250.43
+F5: =E5*(1+Inputs!$B$6)  ->  13107.9601
+G5: =F5*(1+Inputs!$B$6)  ->  14025.517307
+A6: "  Growth %"
+C6: =IF(B5=0,0,C5/B5-1)  ->  0.07
+D6: =IF(C5=0,0,D5/C5-1)  ->  0.07
+E6: =IF(D5=0,0,E5/D5-1)  ->  0.07
+F6: =IF(E5=0,0,F5/E5-1)  ->  0.07
+G6: =IF(F5=0,0,G5/F5-1)  ->  0.07
+A7: "COGS"
+C7: =C5*Inputs!$B$7  ->  4494
+D7: =D5*Inputs!$B$7  ->  4808.58
+E7: =E5*Inputs!$B$7  ->  5145.1806
+F7: =F5*Inputs!$B$7  ->  5505.343242
+G7: =G5*Inputs!$B$7  ->  5890.717269
+A8: "Gross Profit"
+C8: =C5-C7  ->  6206
+D8: =D5-D7  ->  6640.42
+E8: =E5-E7  ->  7105.2494
+F8: =F5-F7  ->  7602.616858
+G8: =G5-G7  ->  8134.800038
+A9: "  Gross margin %"
+C9: =IF(C5=0,0,C8/C5)  ->  0.58
+D9: =IF(D5=0,0,D8/D5)  ->  0.58
+E9: =IF(E5=0,0,E8/E5)  ->  0.58
+F9: =IF(F5=0,0,F8/F5)  ->  0.58
+G9: =IF(G5=0,0,G8/G5)  ->  0.58
+A11: "S&M"
+C11: =C5*Inputs!$B$8  ->  1498
+D11: =D5*Inputs!$B$8  ->  1602.86
+E11: =E5*Inputs!$B$8  ->  1715.0602
+F11: =F5*Inputs!$B$8  ->  1835.114414
+G11: =G5*Inputs!$B$8  ->  1963.572423
+A12: "G&A"
+C12: =C5*Inputs!$B$9  ->  963
+D12: =D5*Inputs!$B$9  ->  1030.41
+E12: =E5*Inputs!$B$9  ->  1102.5387
+F12: =F5*Inputs!$B$9  ->  1179.716409
+G12: =G5*Inputs!$B$9  ->  1262.296558
+A13: "R&D"
+C13: =C5*Inputs!$B$10  ->  749
+D13: =D5*Inputs!$B$10  ->  801.43
+E13: =E5*Inputs!$B$10  ->  857.5301
+F13: =F5*Inputs!$B$10  ->  917.557207
+G13: =G5*Inputs!$B$10  ->  981.786211
+A14: "Total Opex"
+C14: =SUM(C11:C13)  ->  3210
+D14: =SUM(D11:D13)  ->  3434.7
+E14: =SUM(E11:E13)  ->  3675.129
+F14: =SUM(F11:F13)  ->  3932.38803
+G14: =SUM(G11:G13)  ->  4207.655192
+A16: "EBITDA"
+C16: =C8-C14  ->  2996
+D16: =D8-D14  ->  3205.72
+E16: =E8-E14  ->  3430.1204
+F16: =F8-F14  ->  3670.228828
+G16: =G8-G14  ->  3927.144846
+A17: "  EBITDA margin %"
+C17: =IF(C5=0,0,C16/C5)  ->  0.28
+D17: =IF(D5=0,0,D16/D5)  ->  0.28
+E17: =IF(E5=0,0,E16/E5)  ->  0.28
+F17: =IF(F5=0,0,F16/F5)  ->  0.28
+G17: =IF(G5=0,0,G16/G5)  ->  0.28
+A18: "D&A"
+C18: =C5*Inputs!$B$11  ->  321
+D18: =D5*Inputs!$B$11  ->  343.47
+E18: =E5*Inputs!$B$11  ->  367.5129
+F18: =F5*Inputs!$B$11  ->  393.238803
+G18: =G5*Inputs!$B$11  ->  420.765519
+A19: "EBIT"
+C19: =C16-C18  ->  2675
+D19: =D16-D18  ->  2862.25
+E19: =E16-E18  ->  3062.6075
+F19: =F16-F18  ->  3276.990025
+G19: =G16-G18  ->  3506.379327
+A20: "Taxes"
+C20: =MAX(0,C19*Inputs!$B$12)  ->  668.75
+D20: =MAX(0,D19*Inputs!$B$12)  ->  715.5625
+E20: =MAX(0,E19*Inputs!$B$12)  ->  765.651875
+F20: =MAX(0,F19*Inputs!$B$12)  ->  819.247506
+G20: =MAX(0,G19*Inputs!$B$12)  ->  876.594832
+A21: "Net Income"
+C21: =C19-C20  ->  2006.25
+D21: =D19-D20  ->  2146.6875
+E21: =E19-E20  ->  2296.955625
+F21: =F19-F20  ->  2457.742519
+G21: =G19-G20  ->  2629.784495
+
+=== Sheet: CF ===
+A1: "Cash Flow"
+A2: "($ in thousands)"
+B4: "2025A"
+C4: "2026E"
+D4: "2027E"
+E4: "2028E"
+F4: "2029E"
+G4: "2030E"
+A5: "Net Income"
+C5: =IS!C21  ->  2006.25
+D5: =IS!D21  ->  2146.6875
+E5: =IS!E21  ->  2296.955625
+F5: =IS!F21  ->  2457.742519
+G5: =IS!G21  ->  2629.784495
+A6: "(+) D&A"
+C6: =IS!C18  ->  321
+D6: =IS!D18  ->  343.47
+E6: =IS!E18  ->  367.5129
+F6: =IS!F18  ->  393.238803
+G6: =IS!G18  ->  420.765519
+A7: "(-) Capex"
+C7: =-IS!C5*Inputs!$B$13  ->  -481.5
+D7: =-IS!D5*Inputs!$B$13  ->  -515.205
+E7: =-IS!E5*Inputs!$B$13  ->  -551.26935
+F7: =-IS!F5*Inputs!$B$13  ->  -589.858205
+G7: =-IS!G5*Inputs!$B$13  ->  -631.148279
+A8: "(-) Change in NWC"
+C8: =-(IS!C5-IS!B5)*Inputs!$B$14  ->  -70
+D8: =-(IS!D5-IS!C5)*Inputs!$B$14  ->  -74.9
+E8: =-(IS!E5-IS!D5)*Inputs!$B$14  ->  -80.143
+F8: =-(IS!F5-IS!E5)*Inputs!$B$14  ->  -85.75301
+G8: =-(IS!G5-IS!F5)*Inputs!$B$14  ->  -91.755721
+A9: "Free Cash Flow"
+C9: =SUM(C5:C8)  ->  1775.75
+D9: =SUM(D5:D8)  ->  1900.0525
+E9: =SUM(E5:E8)  ->  2033.056175
+F9: =SUM(F5:F8)  ->  2175.370107
+G9: =SUM(G5:G8)  ->  2327.646015
+A10: "Cumulative FCF"
+C10: =SUM($C$9:C9)  ->  1775.75
+D10: =SUM($C$9:D9)  ->  3675.8025
+E10: =SUM($C$9:E9)  ->  5708.858675
+F10: =SUM($C$9:F9)  ->  7884.228782
+G10: =SUM($C$9:G9)  ->  10211.874797
+A11: "  FCF margin %"
+C11: =IF(IS!C5=0,0,C9/IS!C5)  ->  0.165958
+D11: =IF(IS!D5=0,0,D9/IS!D5)  ->  0.165958
+E11: =IF(IS!E5=0,0,E9/IS!E5)  ->  0.165958
+F11: =IF(IS!F5=0,0,F9/IS!F5)  ->  0.165958
+G11: =IF(IS!G5=0,0,G9/IS!G5)  ->  0.165958
+
+=== Sheet: Summary ===
+A1: "5-Year Summary (2026E-2030E)"
+A2: "($ in thousands)"
+A4: "Metric"
+B4: "Value"
+A5: "Total revenue"
+B5: =SUM(IS!C5:G5)  ->  61532.907407
+A6: "Revenue CAGR (2025A-2030E)"
+B6: =IF(IS!B5=0,0,(IS!G5/IS!B5)^(1/COUNT(IS!C5:G5))-1)  ->  0.07
+A7: "Average growth %"
+B7: =AVERAGE(IS!C6:G6)  ->  0.07
+A8: "Total gross profit"
+B8: =SUM(IS!C8:G8)  ->  35689.086296
+A9: "Total EBITDA"
+B9: =SUM(IS!C16:G16)  ->  17229.214074
+A10: "Average EBITDA margin %"
+B10: =AVERAGE(IS!C17:G17)  ->  0.28
+A11: "Total net income"
+B11: =SUM(IS!C21:G21)  ->  11537.420139
+A12: "Total free cash flow"
+B12: =SUM(CF!C9:G9)  ->  10211.874797
+A13: "Average FCF margin %"
+B13: =AVERAGE(CF!C11:G11)  ->  0.165958
+A14: "FCF conversion (FCF / net income)"
+B14: =IF(B11=0,0,B12/B11)  ->  0.885109

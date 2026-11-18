@@ -1,0 +1,7 @@
+[
+  {"sheet": "Inputs", "cell": "B9", "bug_type": "unit_mismatch", "explanation": "Tax rate is entered as 25 (percent points) while every other percentage input is a decimal (0.08, 0.4, etc.). It should be 0.25. This causes IS taxes to be 100x too large (e.g., 2026E taxes of 64,800 on EBIT of 2,592) and net income to be hugely negative."},
+  {"sheet": "IS", "cell": "F8", "bug_type": "hardcode", "explanation": "2029E Total Opex (3401.2224) does not equal S&M + G&A + R&D for that year (4489.6140). It equals the 2028E EBITDA value, indicating a typed-in number or wrong reference where a SUM formula belongs."},
+  {"sheet": "IS", "cell": "F10", "bug_type": "hardcode", "explanation": "2029E EBITDA (4761.71136) breaks the constant 27% margin pattern (35%) and does not equal Gross Profit less Total Opex under the correct opex. It appears to be a typed-in value rather than a formula (Gross Profit - Total Opex)."},
+  {"sheet": "Summary", "cell": "B5", "bug_type": "unit_mismatch", "explanation": "Total revenue shows 63.359290368, which is the sum of 2026E-2030E revenue (63,359.29 in $ thousands) divided by 1,000, i.e., a unit mismatch with the '$ in thousands' header. It should be 63359.290368."},
+  {"sheet": "Summary", "cell": "B12", "bug_type": "off_by_one", "explanation": "Total free cash flow (-307,284.75) equals the cumulative FCF through 2029E only (CF!F8 rather than CF!G8 = -392,173.82), so the sum range is one column too short and omits 2030E."}
+]

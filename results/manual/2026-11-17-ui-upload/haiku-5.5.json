@@ -1,0 +1,6 @@
+[
+  {"sheet": "Inputs", "cell": "B11", "bug_type": "unit_mismatch", "explanation": "Tax rate is entered as 25 instead of 0.25. The IS Taxes row multiplies EBIT by 25, producing taxes of 64,800 on EBIT of 2,592 and making net income deeply negative in every year. Other rates on this sheet are stored as decimals (e.g., 0.08, 0.4)."},
+  {"sheet": "IS", "cell": "F12", "bug_type": "off_by_one", "explanation": "2029E Total Opex = 3,401.22, which equals S&M + G&A only. The SUM omits the R&D row (1,088.39), so the correct value is about 4,489.61. This understates opex, overstates 2029E EBITDA (4,761.71 instead of about 3,673.32), and produces the anomalous 35% EBITDA margin in that year."},
+  {"sheet": "Summary", "cell": "B4", "bug_type": "unit_mismatch", "explanation": "Total revenue shows 63.36, but it is the sum of 2026E-2030E revenue in $000s (63,359.29). The value appears to have been divided by 1,000, so it is inconsistent with the sheet's '$ in thousands' label and with the other totals on the Summary."},
+  {"sheet": "Summary", "cell": "B11", "bug_type": "off_by_one", "explanation": "Total free cash flow should cover the five projection years (2026E-2030E), totaling -392,173.82. The value shown, -307,284.75, equals cumulative FCF through 2029E only, so the range stops one column short. Total FCF Conversion is also affected by this error."}
+]
